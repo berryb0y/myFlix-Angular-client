@@ -23,7 +23,7 @@ export class UserRegistrationFormComponent implements OnInit {
   // @param dialogRef
   // @param snackBar
   // 
-  constructor(
+constructor(
     public fetchApiData: FetchApiDataService,
     public dialogRef: MatDialogRef<UserRegistrationFormComponent>,
     public snackBar: MatSnackBar) { }
