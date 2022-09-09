@@ -106,20 +106,14 @@ export class FetchApiDataService {
   }
 
   //Get user
-  getUser(user: any): Observable<any> {
-    // Get Authorization token stored in local storage
+  getUser(): Observable<any> {
     const token = localStorage.getItem('token');
-    // Get Username stored in local storage
+    const user = localStorage.getItem('user');
     return this.http
-      .get(apiUrl + 'users/' + username, {
-        headers: new HttpHeaders({
-          Authorization: 'Bearer ' + token,
-        })
+      .get(`${apiUrl}users/${user}`, {
+        headers: new HttpHeaders({ Authorization: 'Bearer ' + token }),
       })
-      .pipe(
-        map(this.extractResponseData),
-        catchError(this.handleError)
-      );
+      .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 
   //Add a favorite movie
@@ -129,7 +123,7 @@ export class FetchApiDataService {
     // Get Username stored in local storage
     const user = localStorage.getItem('username');
     return this.http
-      .post(apiUrl + `users/${user}/favorites/${Id}`,{},   {
+    .post(apiUrl + `users/${username}/movies/${Id}`, null, {
         headers: new HttpHeaders({
           Authorization: `Bearer ${token}`,
         })
@@ -158,13 +152,13 @@ export class FetchApiDataService {
   }
 
   //Edit user profile
-  editUser(userData:any): Observable<any> {
+  editUser(updateDetails: any): Observable<any> {
     // Get Authorization token stored in local storage
     const token = localStorage.getItem('token');
     // Get Username stored in local storage
-    const username = localStorage.getItem('username');
+    const username = localStorage.getItem('user');
     return this.http
-      .put(apiUrl + 'users/' + username, userData, {
+      .put(apiUrl + `users/${username}`, updateDetails, {
         headers: new HttpHeaders({
           Authorization: 'Bearer ' + token,
         })
@@ -177,20 +171,13 @@ export class FetchApiDataService {
 
   //Delete a user 
   deleteUser(): Observable<any> {
-    // Get Authorization token stored in local storage
     const token = localStorage.getItem('token');
-    // Get Username stored in local storage
-    const username = localStorage.getItem('username');
+    const user = localStorage.getItem('user');
     return this.http
-      .delete(apiUrl + 'users/' + username, {
-        headers: new HttpHeaders({
-          Authorization: 'Bearer ' + token,
-        })
+      .delete(`${apiUrl}users/${user}`, {
+        headers: new HttpHeaders({ Authorization: `Bearer ${token}` }),
       })
-      .pipe(
-        map(this.extractResponseData),
-        catchError(this.handleError)
-      );
+      .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 
   getFavoriteMovies(): Observable<any> {
