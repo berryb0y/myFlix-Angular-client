@@ -18,12 +18,12 @@ export class UserLoginFormComponent implements OnInit {
 
   @Input() userData = { Username: '', Password: '' };
 
-  // 
-  // Called when created an instance of the class
-  // @param fetchApiData
-  // @param dialogRef
-  // @param snackBar
-  // 
+  /* 
+  * Called when created an instance of the class
+  * @param fetchApiData
+  * @param dialogRef
+  * @param snackBar
+  */ 
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialogRef: MatDialogRef<UserLoginFormComponent>,
