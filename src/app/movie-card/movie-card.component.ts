@@ -6,6 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { DirectorViewComponent } from '../director-view/director-view.component';
 import { GenreViewComponent } from '../genre-view/genre-view.component';
 import { SynopsisComponent } from '../synopsis/synopsis.component';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -17,11 +18,12 @@ export class MovieCardComponent implements OnInit {
 
   movies: any[] = [];
   favoriteMovies: any[] = [];
-
+/** @constructor */
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialog: MatDialog,
     public snackBar: MatSnackBar,
+    public router: Router,
     ) { }
 
   ngOnInit(): void {
